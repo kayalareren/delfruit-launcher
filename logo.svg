@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 300" width="1100" height="300" role="img" aria-labelledby="title description">
+  <title id="title">DelFruit Launcher</title>
+  <desc id="description">DelFruit Launcher wordmark with two pixel-art cherries.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#101c34"/>
+      <stop offset="1" stop-color="#151123"/>
+    </linearGradient>
+    <linearGradient id="pink" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#ff8b9f"/>
+      <stop offset="1" stop-color="#ff5276"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0v24" fill="none" stroke="#c7d7ff" stroke-opacity=".075"/>
+    </pattern>
+    <clipPath id="frame"><rect x="1" y="1" width="1098" height="298" rx="24"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <path fill="url(#background)" d="M0 0h1100v300H0z"/>
+    <path fill="url(#grid)" d="M0 0h1100v300H0z"/>
+    <path d="M750 0h350v300H900z" fill="#3b294f" opacity=".24"/>
+    <path d="M856 300h244v-96h-55v24h-62v24h-64v24h-63z" fill="#a83e66" opacity=".25"/>
+    <path d="M0 266h34v-20h28v20h32v16h31v18H0z" fill="#392843"/>
+    <path d="M166 256h768" stroke="#ff789b" stroke-opacity=".36"/>
+    <path d="M1056 27h16v16h-16zM1014 63h8v8h-8zM930 212h8v8h-8z" fill="#ff85a1" opacity=".65"/>
+    <path d="M878 62h24v4h-24zm10-10h4v24h-4z" fill="#6ad3b4" opacity=".7"/>
+    <rect x="74" y="68" width="164" height="164" rx="29" fill="#101d32" stroke="#394967" stroke-width="2"/>
+    <g transform="translate(92 84) scale(5.5)" shape-rendering="crispEdges">
+      <path fill="#071020" d="M13 6h2V4h2V2h8v2h-2v2h-5v2h-2v2h-2v2h3v-1h4v1h2v2h2v6h-2v2h-2v2h-7v-2h-2v2H9v1H5v-1H3v-2H1v-7h2v-2h2v-1h5v-2h1V8h2z"/>
+      <path fill="#51c997" d="M16 7h-2v2h-2v2h-2v3h2v-2h2v-2h2zm0-1h2V4h5v2h-2v1h-5z"/>
+      <path fill="#2f8b65" d="M16 8h2v2h1v4h-2v-4h-1z"/>
+      <path fill="#cc295b" d="M5 13h5v1h2v2h1v5h-2v2H9v1H5v-1H3v-2H2v-5h1v-2h2zm12-1h4v1h2v2h1v5h-2v2h-2v1h-5v-1h-2v-2h1v-5h1v-2h2z"/>
+      <path fill="#ff5379" d="M5 14h4v1h2v3h-1v2H7v1H4v-1H3v-4h2zm12-1h4v1h2v4h-2v2h-5v-1h-1v-3h1v-2h1z"/>
+      <path fill="#ffb7be" d="M5 15h3v2H5v2H4v-3h1zm13-1h2v2h-2v2h-2v-3h2z"/>
+    </g>
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <text x="271" y="105" fill="#8fa4c7" font-size="19" font-weight="700" letter-spacing="4">WINDOWS FANGAME LIBRARY</text>
+      <text x="267" y="174" fill="#f6f8ff" font-size="65" font-weight="800" letter-spacing="-2">DelFruit <tspan fill="url(#pink)">Launcher</tspan></text>
+      <text x="272" y="216" fill="#c2cdeb" font-size="24">Discover, install and organize Delicious Fruit fangames.</text>
+    </g>
+  </g>
+  <rect x="1" y="1" width="1098" height="298" rx="24" fill="none" stroke="#46506e" stroke-width="2"/>
+</svg>
