@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data: https: delfruit-cover:; frame-src https:;" />
+  <title>DelFruit Launcher</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="library.css" />
+  <link rel="stylesheet" href="catalog.css" />
+  <link rel="stylesheet" href="profiles.css" />
+</head>
+<body>
+  <header><div class="brand"><img class="fruit" src="assets/fruit-icon.png" alt="" /> DelFruit <b>Launcher</b></div><div id="status">Hazır</div></header>
+  <aside>
+    <div class="nav">
+      <button class="active" data-page="browser" aria-current="page">⌂ Keşfet</button>
+      <button data-page="library">▦ Kütüphane</button>
+      <button data-page="collections">▤ Koleksiyonlar</button>
+      <button data-page="settings">⚙ Ayarlar</button>
+      <button data-page="stats">▥ İstatistikler</button>
+    </div>
+    <div class="download hidden" id="download"><div><span id="downloadName"></span><span id="downloadPercent">0%</span></div><progress id="downloadBar" max="100" value="0"></progress></div>
+    <button type="button" id="activeProfileName" class="profile-footer" title="Profil ayarları" hidden></button>
+  </aside>
+  <main>
+    <section id="browserPage" class="page active">
+      <div class="toolbar">
+        <button id="back" class="browser-nav-button" aria-label="Geri"><span class="browser-chevron" aria-hidden="true"></span></button>
+        <button id="forward" class="browser-nav-button" aria-label="İleri"><span class="browser-chevron" aria-hidden="true"></span></button>
+        <button id="reload" class="browser-nav-button" aria-label="Yenile"><span aria-hidden="true">↻</span></button>
+        <input id="address" aria-label="Sayfa adresi" inputmode="url" spellcheck="false" autocomplete="off" />
+        <button id="external">Tarayıcıda aç</button><button id="home">Siteye dön</button>
+      </div>
+      <div id="mediafireHelp" class="toolbar hidden">
+        <button id="findMediafire">ZIP bağlantısını bul</button>
+        <button id="importMediafire">ZIP’ten kur</button>
+      </div>
+      <webview id="site" allowpopups></webview>
+    </section>
+    <section id="libraryPage" class="page">
+      <div class="library-head"><div><h1>Kütüphanem</h1><p id="libraryStatus" role="status">Kurulu fangame'ler</p></div><div class="library-controls"><button class="primary" id="refreshLibrary">Yenile</button><button class="primary" id="install">ZIP'ten kur</button><button class="primary" id="importFolder">Klasörden ekle</button></div></div>
+      <div class="catalog-controls">
+        <label>Sırala <select id="sortBy"><option value="added">En son eklenen</option><option value="rating">DelFruit puanı</option><option value="personal">Kişisel puan</option><option value="count">Puan sayısı</option><option value="launches">Başlatma sayısı</option></select></label>
+        <select id="sortDirection" aria-label="Sıralama yönü"><option value="desc">Azalan</option><option value="asc">Artan</option></select>
+        <details class="tag-filter"><summary>Filtre <span id="filterCount"></span></summary><div id="tagFilters" class="tag-options"></div></details>
+        <button id="onlyFavorites" type="button" aria-pressed="false">♡ Sadece favoriler</button>
+        <label><span>Görünüm</span> <select id="libraryLayout"><option value="compact">Kompakt</option><option value="standard">Standart</option><option value="large">Büyük kartlar</option><option value="list">Liste</option></select></label>
+      </div>
+      <div id="games" class="games"></div>
+      <div id="empty" class="empty"><span>◇</span><h2>Henüz oyun yok</h2><p>Siteden bir ZIP indir veya elindeki arşivi kur.</p></div>
+    </section>
+    <section id="collectionsPage" class="page settings-page scroll-page">
+      <h1>Koleksiyonlar</h1>
+      <form id="createCollection" class="catalog-controls">
+        <input id="collectionName" aria-label="Koleksiyon adı" placeholder="Koleksiyon adı" required maxlength="60">
+        <button class="primary">Koleksiyon oluştur</button>
+      </form>
+      <p id="collectionStatus" role="status"></p>
+      <div id="collections"></div>
+    </section>
+    <section id="settingsPage" class="page settings-page">
+      <h1>Ayarlar</h1>
+      <section class="settings-group" aria-labelledby="settings-profile">
+        <h2 id="settings-profile">Profil ve dil</h2>
+        <div class="settings-group-body">
+          <div class="folder-setting">
+            <h3><label for="languagePicker">Dil</label></h3>
+            <select id="languagePicker"></select>
+          </div>
+          <div class="folder-setting">
+            <h3><label for="profilePicker">Profil</label></h3>
+            <select id="profilePicker"></select>
+            <button type="button" class="primary" id="newProfile">Yeni profil</button>
+          </div>
+          <div class="folder-setting profile-data">
+            <h3>Kullanıcı verileri</h3>
+            <div id="profileDataRows"></div>
+          </div>
+        </div>
+      </section>
+      <section class="settings-group" aria-labelledby="settings-delfruit">
+        <h2 id="settings-delfruit">DelFruit</h2>
+        <div class="settings-group-body">
+          <div class="folder-setting settings-checkbox">
+            <h3><label for="rememberLogin">DelFruit oturumunu hatırla</label></h3>
+            <input type="checkbox" id="rememberLogin">
+          </div>
+          <div class="folder-setting settings-checkbox">
+            <h3><label for="metadataEnabled">DelFruit oyun bilgilerini al</label></h3>
+            <input id="metadataEnabled" type="checkbox">
+          </div>
+        </div>
+      </section>
+      <section class="settings-group" aria-labelledby="settings-appearance">
+        <h2 id="settings-appearance">Görünüm</h2>
+        <div class="settings-group-body">
+          <div class="folder-setting">
+            <h3><label for="theme">Tema</label></h3>
+            <select id="theme"><option value="night">Gece</option><option value="light">Açık</option><option value="arcade">Mor Arcade</option><option value="forest">Orman</option><option value="ocean">Okyanus</option><option value="sunset">Gün batımı</option></select>
+          </div>
+          <div class="folder-setting card-settings">
+            <h3>Oyun kartları</h3>
+            <div id="cardFields"></div>
+          </div>
+        </div>
+      </section>
+      <section class="settings-group" aria-labelledby="settings-storage">
+        <h2 id="settings-storage">Depolama</h2>
+        <div class="settings-group-body">
+          <div class="folder-setting">
+            <h3 id="downloads-label">ZIP indirme klasörü</h3>
+            <output id="downloads-folder" aria-labelledby="downloads-label"></output>
+            <button type="button" class="primary" data-folder="downloads" aria-label="ZIP indirme klasörünü seç">Klasör seç</button>
+          </div>
+          <div class="folder-setting">
+            <h3 id="games-label">Oyun kurulum klasörü</h3>
+            <output id="games-folder" aria-labelledby="games-label"></output>
+            <button type="button" class="primary" data-folder="games" aria-label="Oyun kurulum klasörünü seç">Klasör seç</button>
+          </div>
+          <p class="settings-note">Klasör değişikliği sonraki indirmelerde ve kurulumlarda uygulanır.</p>
+        </div>
+      </section>
+      <section class="settings-group" aria-labelledby="settings-games">
+        <h2 id="settings-games">Oyun</h2>
+        <div class="settings-group-body">
+          <div class="folder-setting settings-checkbox">
+            <h3><label for="fullscreenOnLaunch">Oyunları tam ekran aç (F4)</label></h3>
+            <input id="fullscreenOnLaunch" type="checkbox">
+          </div>
+          <form id="controlsForm" class="folder-setting control-settings">
+            <h3>Oyun kontrolleri</h3>
+            <label class="control-toggle"><input id="controlsEnabled" type="checkbox"><span>Özel tuşları tüm oyunlara uygula</span></label>
+            <p class="settings-note">Tuş değişiklikleri oyunu bir sonraki açışında uygulanır.</p>
+            <p class="settings-note">Klavye: Oklar imleci taşır, Enter tıklar. Page Up ve Page Down kaydırır.</p>
+            <p class="settings-note">Gamepad: Sol çubuk veya yön tuşları imleci taşır. A/× tıklar, sağ çubuk kaydırır.</p>
+            <div class="control-row control-head"><span>Hareket</span><span>Klavye</span><span>Gamepad</span></div>
+            <div id="controlBindings"></div>
+            <div class="control-actions">
+              <button type="button" id="resetControls">Tüm tuşları sıfırla</button>
+              <button type="submit" class="primary">Kaydet</button>
+            </div>
+            <p id="controlStatus" role="status"></p>
+          </form>
+          <form id="gameAudioForm" class="folder-setting control-settings">
+            <h3>Oyun sesi</h3>
+            <label class="control-toggle"><input id="gameAudioEnabled" type="checkbox"><span>Uyumlu oyunlara ses ayarlarını uygula</span></label>
+            <p class="settings-note">Ses seviyeleri desteklenen oyunlarda bir sonraki açılışta uygulanır.</p>
+            <div class="audio-slider">
+              <label for="gameMusic">Müzik seviyesi</label>
+              <input id="gameMusic" type="range" min="0" max="100" step="1" value="100" disabled>
+              <output for="gameMusic" id="gameMusicValue">100%</output>
+            </div>
+            <div class="audio-slider">
+              <label for="gameSfx">Ses efektleri seviyesi</label>
+              <input id="gameSfx" type="range" min="0" max="100" step="1" value="100" disabled>
+              <output for="gameSfx" id="gameSfxValue">100%</output>
+            </div>
+            <div class="control-actions"><button type="submit" class="primary">Kaydet</button></div>
+            <p id="gameAudioStatus" role="status"></p>
+          </form>
+        </div>
+      </section>
+      <p id="settings-status" role="status"></p>
+      <footer class="settings-credits">
+        <h2>Katkıda bulunanlar</h2>
+        <p>Made by Labeletal</p>
+        <p>Discord: <span class="discord-handle">labeletal</span></p>
+        <p><a id="creditsGithub" href="https://github.com/kayalareren/delfruit-launcher">GitHub</a></p>
+        <p><span>Sürüm</span> <span id="creditsVersion"></span></p>
+      </footer>
+    </section>
+    <section id="statsPage" class="page settings-page scroll-page">
+      <h1>İstatistikler</h1>
+      <div id="statsSummary" class="stats-summary"></div>
+      <h2>Oynama süresine göre</h2>
+      <ol id="playtimeRanking" class="playtime-ranking"></ol>
+    </section>
+  </main>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="languageDialog">
+    <form id="languageForm">
+      <h1>Dil seç</h1>
+      <label for="startupLanguage">Dil</label>
+      <select id="startupLanguage"></select>
+      <div class="profile-dialog-actions"><button type="submit" class="primary">Devam et</button></div>
+      <p id="languageStatus" role="status"></p>
+    </form>
+  </dialog>
+  <dialog id="profileDialog">
+    <form id="profileForm">
+      <h1 id="profileDialogTitle">Profil oluştur</h1>
+      <label for="profileName">Profil adı</label>
+      <input id="profileName" required maxlength="60" autocomplete="off">
+      <div class="profile-dialog-actions">
+        <button type="button" id="cancelProfile">Vazgeç</button>
+        <button type="submit" class="primary">Oluştur</button>
+      </div>
+    </form>
+    <div id="startupProfiles" hidden></div>
+    <p id="profileDialogStatus" role="status"></p>
+  </dialog>
+  <script src="locale.js"></script>
+  <script src="gamepad-pointer.js"></script>
+  <script src="navigation.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

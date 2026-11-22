@@ -1,0 +1,163 @@
+.profile-footer {
+  margin-top: auto;
+  padding: 12px 10px;
+  border: 0;
+  border-top: 1px solid var(--border);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.profile-footer:hover { background: var(--panel); }
+.actions .favorite-game {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 34px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+#profilePicker { grid-row: 2; max-width: 100%; justify-self: start; }
+.settings-checkbox > input[type="checkbox"] {
+  grid-column: 2;
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+#rememberLogin, #metadataEnabled { accent-color: #ff5370; }
+#profilePicker, #languagePicker, #startupLanguage, .personal-rating select, .backup-actions button:not(#resetUserData), #cancelProfile {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: inherit;
+  background: var(--panel);
+}
+.personal-rating { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.backup-actions {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.folder-setting .backup-actions button { cursor: pointer; grid-column: auto; grid-row: auto; }
+.profile-data { display: block; }
+.settings-group-body > .profile-data h3 { margin-bottom: 8px; }
+.profile-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+.profile-data-row strong { overflow-wrap: anywhere; }
+.backup-actions .profile-reset { border-color: var(--accent); }
+#profileDialog, #languageDialog {
+  width: min(440px, 90vw);
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: inherit;
+}
+#profileDialog::backdrop, #languageDialog::backdrop { background: #080d19b8; }
+#profileDialog h1, #languageDialog h1 { margin: 0 0 16px; font-size: 21px; }
+#startupLanguage { width: 100%; margin: 8px 0 16px; }
+#profileDialog input { width: 100%; margin: 8px 0 16px; padding: 8px; }
+.profile-dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+#startupProfiles button { margin: 4px; }
+#profileDialogStatus:empty { display: none; }
+.settings-credits {
+  width: min(100%, 760px);
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.settings-credits h2 { margin: 0 0 8px; font-size: 16px; }
+.settings-credits p { margin: 4px 0; color: var(--muted); }
+.settings-credits a { color: var(--accent); }
+.discord-handle { user-select: all; }
+.control-settings { display: block; }
+.control-settings .settings-note { margin: 8px 0; }
+.control-toggle { display: flex; align-items: center; gap: 8px; margin-top: 10px; cursor: pointer; }
+.control-toggle input { accent-color: var(--accent); }
+.control-row {
+  display: grid;
+  grid-template-columns: minmax(84px, 1fr) minmax(75px, 118px) minmax(100px, 155px) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+}
+.control-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
+.control-settings button:not(.primary) {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: inherit;
+  background: var(--panel);
+  cursor: pointer;
+}
+.control-row .capture-key { grid-column: 2; grid-row: auto; }
+.control-row .capture-pad { grid-column: 3; grid-row: auto; }
+.control-row .reset-key { grid-column: 4; grid-row: auto; }
+.control-head { color: var(--muted); font-size: 12px; }
+.audio-slider {
+  display: grid;
+  grid-template-columns: minmax(125px, 1fr) minmax(100px, 2fr) 50px;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.audio-slider input { min-width: 0; accent-color: var(--accent); }
+.audio-slider input:disabled { accent-color: #888; cursor: default; }
+.audio-slider:has(input:disabled) { opacity: 0.6; }
+.folder-setting .audio-slider output { grid-row: auto; text-align: right; font-variant-numeric: tabular-nums; }
+#gameAudioStatus:empty { display: none; }
+:focus-visible, select[data-gamepad-edit] { outline: 2px solid var(--accent); outline-offset: 2px; }
+.virtual-gamepad-pointer {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 17px;
+  height: 21px;
+  pointer-events: none;
+  background: #121829;
+  clip-path: polygon(0 0, 100% 69%, 50% 72%, 35% 100%);
+}
+.virtual-gamepad-pointer::after {
+  position: absolute;
+  inset: 2px 3px 4px 2px;
+  content: '';
+  background: #fff;
+  clip-path: inherit;
+}
+.gamepad-hover { outline: 2px solid var(--accent); outline-offset: 2px; }
+.virtual-select-menu {
+  position: fixed;
+  z-index: 9998;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--surface);
+  box-shadow: 0 6px 18px #0008;
+}
+.virtual-select-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  color: inherit;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.virtual-select-menu button[aria-selected="true"], .virtual-select-menu button.gamepad-hover { background: var(--panel); }
+.control-actions button { grid-column: auto; grid-row: auto; }
+#controlStatus:empty { display: none; }

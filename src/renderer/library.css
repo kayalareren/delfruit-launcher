@@ -1,0 +1,110 @@
+.library-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.game-thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #080d19;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.rating-label { display: block; font-size: 12px; color: var(--muted); }
+.thumbnail-placeholder {
+  object-fit: cover;
+}
+.brand .fruit {
+  width: 23px;
+  height: 23px;
+  vertical-align: middle;
+}
+.game-options { position: relative; }
+.game-options > summary {
+  display: grid;
+  place-items: center;
+  min-width: 36px;
+  height: 100%;
+  list-style: none;
+  cursor: pointer;
+  border: 1px solid #34435f;
+  border-radius: 7px;
+  background: #182238;
+  font-size: 20px;
+}
+.game-options > summary::-webkit-details-marker { display: none; }
+.game-options-panel {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: calc(100% + 6px);
+  display: grid;
+  gap: 8px;
+  width: 224px;
+  padding: 12px;
+  background: #11192a;
+  border: 1px solid #34435f;
+  border-radius: 9px;
+  box-shadow: 0 8px 22px #0008;
+}
+.game-options-panel label { cursor: pointer; }
+.game-options-panel .game-source { margin: 0; }
+.game-options-panel .game-source a { display: block; margin-bottom: 4px; }
+.game-rating { color: #ffd479; margin: 7px 0; }
+.rating-stars {
+  background: linear-gradient(90deg, #ffd479 var(--fill), #6d788c var(--fill));
+  background-clip: text;
+  color: transparent;
+}
+.game-source { margin-top: 8px; font-size: 13px; color: #b4c7ee; }
+.game-source summary { cursor: pointer; }
+.game-source form { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 6px; }
+.game-source input { flex: 1; min-width: 120px; }
+.game-source a { color: inherit; }
+
+.settings-page {
+  flex-direction: column;
+  overflow: auto;
+  padding: 34px;
+}
+.settings-page h1 { margin: 0 0 22px; font-size: 28px; }
+.folder-setting {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 18px;
+  width: min(100%, 760px);
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #11192a;
+  border: 1px solid #26344d;
+  border-radius: 12px;
+}
+.folder-setting h3 { margin: 0; font-size: 15px; }
+.folder-setting output { grid-row: 2; color: #b4c7ee; overflow-wrap: anywhere; }
+.folder-setting button { grid-column: 2; grid-row: 1 / 3; }
+.settings-note, #settings-status { color: #a5b1c8; font-size: 13px; }
+.settings-group {
+  flex: none;
+  width: min(100%, 760px);
+  margin-bottom: 22px;
+}
+.settings-group > h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--muted);
+}
+.settings-group-body {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.settings-group-body > .folder-setting {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.settings-group-body > .folder-setting + .folder-setting { border-top: 1px solid var(--border); }
+.settings-group-body > .folder-setting:first-child { border-radius: 11px 11px 0 0; }
+.settings-group-body > .folder-setting:last-child { border-radius: 0 0 11px 11px; }
+.settings-group-body > .settings-note { margin: 0; padding: 0 16px 16px; }
