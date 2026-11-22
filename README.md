@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg?v=2" alt="DelFruit Launcher — Windows fangame library" width="100%">
+  <img src="https://raw.githubusercontent.com/kayalareren/delfruit-launcher/272de31b0f7a19c737754b08cb715b15e4092c97/logo.svg" alt="DelFruit Launcher — Windows fangame library" width="100%">
 </p>
 
 <h1 align="center">DelFruit Launcher</h1>
