@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg" alt="DelFruit Launcher — Windows fangame library" width="100%">
+  <img src="logo.svg?v=2" alt="DelFruit Launcher — Windows fangame library" width="100%">
 </p>
 
 <h1 align="center">DelFruit Launcher</h1>
